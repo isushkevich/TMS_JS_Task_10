@@ -29,12 +29,9 @@ class SuperUser extends User {
         SuperUser.createdUsers.push(name);
     }
 
-    createUser(name, password) {
-        this.name = name;
-        this.password = password;
-        SuperUser.createdUsers.pop();
+    static createUser(name, password) {
         SuperUser.createdUsers.push(name);
-        return this;
+        return new User(name, password);
     }
 }
 
@@ -62,11 +59,9 @@ let user1 = new User("User1", "3ffj90");
 
 let user2 = new SuperUser("SuperUser2", "32o29u3j9");
 
-let user3 = new SuperUser();
-user3.createUser("SuperUser3", "sf3t3");
+let user3 = SuperUser.createUser("SuperUser3", "sf3t3");
 
-let user4 = new SuperUser();
-user4.createUser("SuperUser4", "f3f344f8l");
+let user4 = SuperUser.createUser("SuperUser4", "f3f344f8l");
 
 Admin.deleteUser("SuperUser3");
 

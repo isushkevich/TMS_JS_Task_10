@@ -3,10 +3,10 @@
 
 class User {
     static canSendMessage = true;
-    name = "Unknown";
-    password = "Password";
+    name;
+    password;
 
-    constructor(name = "Unknown", password = "Password") {
+    constructor(name, password) {
         this.name = name;
         this.password = password;
     }
@@ -19,14 +19,14 @@ class User {
 
 class SuperUser extends User {
     static createdUsers = [];
-    name = "Unknown";
-    password = "Password";
+    name;
+    password;
 
     static getCreatedUsers() {
         return SuperUser.createdUsers;
     }
 
-    constructor(name = "Unknown", password = "Password") {
+    constructor(name, password) {
         super(name, password);
         SuperUser.createdUsers.push(name);
     }
@@ -41,6 +41,11 @@ class SuperUser extends User {
 
 class Admin extends SuperUser {
     static deletedUsers = [];
+
+    constructor(name, password) {
+        super(name, password);
+        SuperUser.createdUsers.push(name);
+    }
 
     static deleteUser(name) {
         let createdUsers = super.createdUsers;

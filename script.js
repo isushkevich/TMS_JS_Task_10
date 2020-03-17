@@ -6,7 +6,7 @@ class User {
     name = "Unknown";
     password = "Password";
 
-    constructor(name, password) {
+    constructor(name = "Unknown", password = "Password") {
         this.name = name;
         this.password = password;
     }
@@ -19,12 +19,14 @@ class User {
 
 class SuperUser extends User {
     static createdUsers = [];
+    name = "Unknown";
+    password = "Password";
 
     static getCreatedUsers() {
         return SuperUser.createdUsers;
     }
 
-    constructor(name, password) {
+    constructor(name = "Unknown", password = "Password") {
         super(name, password);
         SuperUser.createdUsers.push(name);
     }
@@ -45,6 +47,7 @@ class Admin extends SuperUser {
         for (let i = 0; i < createdUsers.length; i++) {
             if (createdUsers[i] === name) {
                 this.deletedUsers.push(createdUsers.splice(i, 1));
+                console.log(name + " was deleted.");
             }
         }
     }
